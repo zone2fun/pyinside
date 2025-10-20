@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import "tailwindcss";
+
+*{
+  font-family: "Kanit", sans-serif;
+}
+
+
+
+@theme{
+  --color-primary: #019F1E;
+  --color-accent: #8FEB9F;
+
+   /* กำหนดค่า CSS Grid ที่ซับซ้อนให้เป็นตัวแปร */
+  --grid-16-cols: repeat(16, minmax(0, 1fr));
+   --grid-2-cols: repeat(2, minmax(0, 1fr));
+  --grid-cols-auto: repeat(5, minmax(0, 1fr));
+
+}
+
+.active li {
+  @apply py-2 px-4 rounded-2xl bg-gray-100
+}
+
+
