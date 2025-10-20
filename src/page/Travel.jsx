@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext.jsx";
 import Modal from "../context/Modals.jsx";
 
-const News = () => {
-  const { newsData, getNews } = useContext(AppContext);
+const Travel = () => {
+  const { travels, getTravels } = useContext(AppContext);
   const { id } = useParams(); // ถ้ามี id ใน route
 
   const [visiblePosts, setVisiblePosts] = useState([]);
@@ -16,13 +16,13 @@ const News = () => {
   const POSTS_PER_LOAD = 5;
 
   // Filter ข้อมูล: ถ้า id มีค่า จะ filter ตาม category หรือ id, ถ้าไม่มี จะเอาทั้งหมด
-  const filteredNews = id
-    ? newsData.filter((item) => item.category === id || item.id === id)
-    : newsData;
+  const filteredTravel = id
+    ? travels.filter((item) => item.category === id || item.id === id)
+    : travels;
 
   // โหลดข่าวจาก context
   useEffect(() => {
-    getNews();
+    getTravels();
   }, []);
 
   // โหลดโพสต์เริ่มต้น หรือเมื่อ newsData / id เปลี่ยน
@@ -30,7 +30,7 @@ const News = () => {
     setVisiblePosts([]);
     setNextIndex(0);
     loadMorePosts(true); // true = reset index
-  }, [newsData, id]);
+  }, [travels, id]);
 
   const loadMorePosts = (reset = false) => {
     if (loadingSkeletons) return;
@@ -38,8 +38,8 @@ const News = () => {
 
     setTimeout(() => {
       const start = reset ? 0 : nextIndex;
-      const newPosts = filteredNews.slice(start, start + POSTS_PER_LOAD);
-      setVisiblePosts((prev) => (reset ? newPosts : [...prev, ...newPosts]));
+      const travelData = filteredTravel.slice(start, start + POSTS_PER_LOAD);
+      setVisiblePosts((prev) => (reset ? travelData : [...prev, ...travelData]));
       setNextIndex(start + POSTS_PER_LOAD);
       setLoadingSkeletons(false);
     }, 500); // ลดเวลาเล็กน้อย
@@ -49,7 +49,7 @@ const News = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && nextIndex < filteredNews.length) {
+        if (entries[0].isIntersecting && nextIndex < filteredTravel.length) {
           loadMorePosts();
         }
       },
@@ -60,7 +60,7 @@ const News = () => {
     return () => {
       if (loaderRef.current) observer.unobserve(loaderRef.current);
     };
-  }, [nextIndex, loadingSkeletons, filteredNews]);
+  }, [nextIndex, loadingSkeletons, filteredTravel]);
 
   const handleImageLoad = (id) => {
     setLoadedImages((prev) => new Set([...prev, id]));
@@ -109,7 +109,7 @@ const News = () => {
           ))}
 
         <div ref={loaderRef} className="h-12 flex justify-center items-center mt-4">
-          {nextIndex >= filteredNews.length && <p className="text-gray-400">— หมดรายการแล้ว —</p>}
+          {nextIndex >= filteredTravel.length && <p className="text-gray-400">— หมดรายการแล้ว —</p>}
         </div>
       </div>
 
@@ -118,4 +118,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Travel;

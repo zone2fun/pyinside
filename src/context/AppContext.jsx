@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { news, postContent, news_category } from "../assets/assets.js"
+import { news, postContent, news_category, hotNewsList, travel, travel_category } from "../assets/assets.js"
 
 
 
@@ -10,6 +10,68 @@ const AppContextProvider = (props) => {
      const  [ newsData, setNewsData ] = useState([])
      const [ postData, setPostData] = useState([])
       const [ newsCategory, setNewsCategory ] = useState([])
+      const [ travelCategory, setTravelCategory ] = useState([])
+      const [ hotNews, setHotNews ] = useState([])
+      const [ travels, setTravels ] = useState([])
+
+
+      const getTravels = async ()=>{
+
+           try{
+
+              const data = travel
+                if(data){
+                  setTravels(data)
+                }
+
+           }catch(error){
+
+               console.log(error)
+
+
+           }
+
+      }
+
+      const getTravelCategory = async ()=>{
+
+
+          try{
+
+              const data = travel_category
+               if(data){
+                  setTravelCategory(data)
+               }
+
+          }catch(error){
+            console.log(error)
+          }
+
+      }
+
+
+      const getHotNews = async ()=>{
+
+         try{
+
+            const data  = hotNewsList
+
+              if(data){
+               setHotNews(data)
+              }else{
+                console.log("Can not get Hotnews Data")
+              }
+
+         }catch(error){
+
+             console.log(error)
+
+         }
+
+          
+
+      }
+
 
       const getNewsCategory = async ()=>{
 
@@ -77,13 +139,19 @@ const AppContextProvider = (props) => {
 
      useEffect(()=>{
         getNews(),
-        getPosts()
+        getPosts(),
+        getHotNews(),
+        getTravels(),
+        getTravelCategory()
      },[])
 
      const value = {
         getNews, newsData, setNewsData,
         getPosts, postData, setPostData,
-        getNewsCategory, newsCategory, setNewsCategory
+        getNewsCategory, newsCategory, setNewsCategory,
+        getHotNews, hotNews, setHotNews,
+        getTravels, travels, setTravels,
+        getTravelCategory, travelCategory, setTravelCategory
      }
 
 

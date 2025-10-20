@@ -24,6 +24,11 @@
   @apply py-2 px-4 rounded-2xl bg-gray-100
 }
 
+#sub-menu .active li {
+
+  @apply py-0 px-2 rounded-2xl bg-white
+}
+
 /* ทำให้ scrollbar บางและสวย */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
@@ -54,5 +59,41 @@
   animation: marquee 35s linear infinite;
   will-change: transform;
 }
+
+
+@keyframes flag-wave {
+  0%, 100% {
+    transform: rotate(0deg) translateX(0);
+  }
+  10% {
+    transform: rotate(3deg) translateX(1px);
+  }
+  20% {
+    transform: rotate(-3deg) translateX(-1px);
+  }
+  30% {
+    transform: rotate(2deg) translateX(1px);
+  }
+  40% {
+    transform: rotate(-2deg) translateX(-1px);
+  }
+  50% {
+    transform: rotate(1deg) translateX(0.5px);
+  }
+  60%, 100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-flag {
+  animation: flag-wave 4s ease-in-out infinite;
+  animation-delay: 2s; /* ปลิวเป็นระยะๆ ไม่บ่อยเกินไป */
+}
+
+
+
+
+
+
 
 
