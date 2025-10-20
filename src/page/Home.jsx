@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import Modal from "../context/ModalsHome";
 
 
 const Home = () => {
@@ -11,6 +12,8 @@ const Home = () => {
   const [loadedImages, setLoadedImages] = useState(new Set()); // สำหรับภาพที่โหลดเสร็จแล้ว
   const [nextIndex, setNextIndex] = useState(0);
   const loaderRef = useRef(null);
+  const [selectedPost, setSelectedPost] = useState(null); // 👈 เก็บโพสต์ที่ถูกคลิก
+
   const POSTS_PER_LOAD = 5;
 
   useEffect(() => {
@@ -59,6 +62,7 @@ const Home = () => {
         {visiblePosts.map((item) => (
           <div
             key={item.id}
+             onClick={()=> setSelectedPost(item)}
             className="w-full bg-white rounded-2xl shadow-md overflow-hidden transition hover:shadow-lg duration-300 hover:cursor-pointer"
           >
             <div className="relative h-56 w-full bg-gray-200">
@@ -115,6 +119,10 @@ const Home = () => {
           )}
         </div>
       </div>
+
+           {/* 🔹 Popup Modal */}
+           <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost} />
+
     </div>
   );
 }
