@@ -24,4 +24,35 @@
   @apply py-2 px-4 rounded-2xl bg-gray-100
 }
 
+/* ทำให้ scrollbar บางและสวย */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.7); /* เทาๆ */
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.9);
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  min-width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
 

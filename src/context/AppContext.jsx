@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { news, postContent } from "../assets/assets.js"
+import { news, postContent, news_category } from "../assets/assets.js"
 
 
 
@@ -9,6 +9,26 @@ const AppContextProvider = (props) => {
 
      const  [ newsData, setNewsData ] = useState([])
      const [ postData, setPostData] = useState([])
+      const [ newsCategory, setNewsCategory ] = useState([])
+
+      const getNewsCategory = async ()=>{
+
+         try{
+
+             const data = news_category
+               if(data){
+                   setNewsCategory(data)
+               }else{
+                  console.log("Can not get news category")
+               }
+
+
+         }catch(error){
+            console.log(error)
+         }
+
+      }
+     
 
 
 
@@ -62,7 +82,8 @@ const AppContextProvider = (props) => {
 
      const value = {
         getNews, newsData, setNewsData,
-        getPosts, postData, setPostData
+        getPosts, postData, setPostData,
+        getNewsCategory, newsCategory, setNewsCategory
      }
 
 

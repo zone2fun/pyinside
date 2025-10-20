@@ -21,7 +21,7 @@ const Modal = ({ selectedPost, setSelectedPost }) => {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
-          className="bg-white rounded-2xl shadow-xl max-w-2xl w-full overflow-hidden relative"
+          className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-500 scroll-smooth relative"
           onClick={(e) => e.stopPropagation()}
         >
           {/* ปุ่มปิด */}

@@ -15,7 +15,7 @@ function App() {
          <Navbar/>
           <div className='flex flex-1 w-2/3 mx-auto mt-5 overflow-hidden'>
             <SidebarLeft/>
-               <div className='flex-1 w-full h-full overflow-y-auto'>
+               <div className='flex-1 w-full h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-500 scroll-smooth'>
                    <Routes>
                   
                  <Route path="/" element={<Home/>}/>

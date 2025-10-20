@@ -1,9 +1,25 @@
 import { assets } from "../assets/assets.js"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { Sunrise } from 'lucide-react';
+import { useContext, useEffect } from "react";
+import { AppContext } from "../context/AppContext.jsx";
+import RunningAnnouncement from "./RunningAnoucement.jsx";
+
 
 
 const Navbar = () => {
+
+    const location = useLocation()
+
+    const { getNewsCategory, newsCategory } = useContext(AppContext)
+
+
+    useEffect(()=>{
+      getNewsCategory()
+    },[])
+
+
+
   return (
       <div className="w-full lg:w-2/3 mx-auto">
         {/* Top bar green */}
@@ -67,18 +83,30 @@ const Navbar = () => {
           </div>
 
           {/* Sub menu */}
-           <div className="hidden rounded-md md:flex w-full lg:w-2/3 mx-auto px-5 py-2 bg-accent">
+
+          {
+            location.pathname.startsWith("/news") ? (
+              
+                    <div className="hidden rounded-md md:flex w-full justify-center lg:w-2/3 mx-auto px-5 py-2 bg-accent">
               <ul className="flex justify-center gap-3">
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>งานกีฬา</li>
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>กิจกรรมต่างๆ</li>
-                 <li>กิจกรรมต่างๆ</li>
+               {
+                  newsCategory.map((item,index)=>(
+                   
+                     <li key={index}>{item}</li>
+
+                  ))
+               }
+                 
+                
               </ul>
            </div>
+
+            ) : (
+   <RunningAnnouncement/>
+)
+}
+
+        
 
       </div>
   )
