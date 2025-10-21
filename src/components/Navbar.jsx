@@ -12,12 +12,13 @@ const Navbar = () => {
 
     const location = useLocation()
 
-    const { getNewsCategory, newsCategory, getTravelCategory, travelCategory } = useContext(AppContext)
+    const { getNewsCategory, newsCategory, getTravelCategory, travelCategory, getShopCategory, shopCategory } = useContext(AppContext)
 
 
     useEffect(()=>{
       getNewsCategory(),
-      getTravelCategory()
+      getTravelCategory(),
+      getShopCategory()
     },[])
 
 
@@ -121,7 +122,26 @@ const Navbar = () => {
            </div>
                )
                
-               : (
+               : location.pathname.startsWith("/shop")
+               
+                  ? (
+                  
+                    <div className="hidden rounded-md md:flex w-full justify-center lg:w-2/3 mx-auto px-5 py-2 bg-green-500/75">
+                    <ul className="flex justify-center items-center gap-4" id="sub-menu">
+              
+               {
+                  shopCategory.map((item_shop,index_shop)=>(
+                     <NavLink to={`/shop/${item_shop}`}><li key={index_shop}>{item_shop}</li></NavLink>
+                     
+
+                  ))
+               }
+                 
+                
+              </ul>
+           </div>
+               )
+                  : (
                  <RunningAnnouncement/>
                  )
 }

@@ -28,6 +28,7 @@ function App() {
                  <Route path="/travel" element={<Travel/>}/>
                  <Route path="/travel/:id" element={<Travel/>}/>
                  <Route path="/shop" element={<Shop/>}/>
+                 <Route path="/shop/:id" element={<Shop/>}/>
                  <Route path="/jobs" element={<Jobs/>}/>
                  <Route path="/advertisement" element={<Advertisement/>}/>
 

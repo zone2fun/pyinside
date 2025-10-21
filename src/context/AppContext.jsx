@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { news, postContent, news_category, hotNewsList, travel, travel_category } from "../assets/assets.js"
+import { news, postContent, news_category, hotNewsList, travel, travel_category, shop, shop_category } from "../assets/assets.js"
 
 
 
@@ -13,6 +13,43 @@ const AppContextProvider = (props) => {
       const [ travelCategory, setTravelCategory ] = useState([])
       const [ hotNews, setHotNews ] = useState([])
       const [ travels, setTravels ] = useState([])
+      const [ shops, setShops ] = useState([])
+      const [ shopCategory, setShopCategory ] = useState([])
+
+
+      const getShopCategory = async ()=>{
+
+          try{
+            
+             const data = shop_category
+              if(data){
+                 setShopCategory(data)
+                  console.log(data)
+              }
+
+          }catch(error){
+        
+             console.log(error)
+
+
+          }
+
+      }
+
+      const getShop = async ()=>{
+          try{
+             
+             const data = shop
+              if(data){
+                 setShops(data)
+              }
+
+          }catch(error){
+
+             console.log(error)
+
+          }
+      }
 
 
       const getTravels = async ()=>{
@@ -142,7 +179,9 @@ const AppContextProvider = (props) => {
         getPosts(),
         getHotNews(),
         getTravels(),
-        getTravelCategory()
+        getTravelCategory(),
+        getShop(),
+        getShopCategory()
      },[])
 
      const value = {
@@ -151,7 +190,8 @@ const AppContextProvider = (props) => {
         getNewsCategory, newsCategory, setNewsCategory,
         getHotNews, hotNews, setHotNews,
         getTravels, travels, setTravels,
-        getTravelCategory, travelCategory, setTravelCategory
+        getTravelCategory, travelCategory, setTravelCategory,
+        getShop,shopCategory,getShopCategory,shops
      }
 
 
